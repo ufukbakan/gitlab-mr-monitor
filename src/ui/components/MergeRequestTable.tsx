@@ -31,6 +31,7 @@ export default function () {
             <Column
                 field="target_brach"
                 header="Branch"
+                sortable
                 body={(mr: MergeRequest) => (
                     <div className="flex align-items-center justify-content-start gap-2">
                         <div>{mr.source_branch}</div> <i className="pi pi-arrow-right" /><div>{mr.target_branch}</div>
