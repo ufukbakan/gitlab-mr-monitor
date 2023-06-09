@@ -8,6 +8,7 @@ import BranchesDropdown from "../elements/BranchesDropdown";
 import StatesDropdown from "../elements/StatesDropdown";
 import { Button } from "primereact/button"
 import { MergeRequest, Project } from "../../service/types";
+import ThemeSwitcher from "../elements/ThemeSwitcher";
 
 export default function () {
     const [isFetching, setIsFetching] = useState(false);
@@ -47,7 +48,8 @@ export default function () {
     }, [token, branches, states])
 
     return (
-        <div className="flex gap-2">
+        <div className="flex gap-2 align-items-center">
+            <ThemeSwitcher />
             <Button icon={isFetching ? "pi pi-spin pi-spinner" : "pi pi-replay"} disabled={isFetching} onClick={loadData} />
             <AccessTokenInput />
             <BranchesDropdown />
