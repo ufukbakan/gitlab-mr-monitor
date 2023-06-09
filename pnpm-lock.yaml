@@ -11,18 +11,22 @@ specifiers:
   eslint-plugin-react-hooks: ^4.6.0
   eslint-plugin-react-refresh: ^0.3.4
   primeflex: ^3.3.1
+  primeicons: ^6.0.1
   primereact: ^9.5.0
   react: ^18.2.0
   react-dom: ^18.2.0
+  recoil: ^0.7.7
   typescript: ^5.0.2
   vite: ^4.3.9
 
 dependencies:
   axios: 1.4.0
   primeflex: 3.3.1
+  primeicons: 6.0.1
   primereact: 9.5.0_b7afjdsfcwlyaruperymvvzwyy
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  recoil: 0.7.7_biqbaboplfbrettd7655fr4n2y
 
 devDependencies:
   '@types/react': 18.2.9
@@ -1077,6 +1081,10 @@ packages:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
     dev: true
 
+  /hamt_plus/1.0.2:
+    resolution: {integrity: sha512-t2JXKaehnMb9paaYA7J0BX8QQAY8lwfQ9Gjf4pg/mk4krt+cmwmU652HOoWonf+7+EQV97ARPMhhVgU1ra2GhA==}
+    dev: false
+
   /has-flag/4.0.0:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
     engines: {node: '>=8'}
@@ -1329,6 +1337,10 @@ packages:
     resolution: {integrity: sha512-zaOq3YvcOYytbAmKv3zYc+0VNS9Wg5d37dfxZnveKBFPr7vEIwfV5ydrpiouTft8MVW6qNjfkaQphHSnvgQbpQ==}
     dev: false
 
+  /primeicons/6.0.1:
+    resolution: {integrity: sha512-KDeO94CbWI4pKsPnYpA1FPjo79EsY9I+M8ywoPBSf9XMXoe/0crjbUK7jcQEDHuc0ZMRIZsxH3TYLv4TUtHmAA==}
+    dev: false
+
   /primereact/9.5.0_b7afjdsfcwlyaruperymvvzwyy:
     resolution: {integrity: sha512-ZykUr4MtEsVLECiTCk58oexYqYwtfa1/eg9T+0u6IaxQczEo/4UfljWCg/KLrs2KCgH6OKGScxvlUePiVMsBrw==}
     peerDependencies:
@@ -1400,6 +1412,23 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
+    dev: false
+
+  /recoil/0.7.7_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-8Og5KPQW9LwC577Vc7Ug2P0vQshkv1y3zG3tSSkWMqkWSwHmE+by06L8JtnGocjW6gcCvfwB3YtrJG6/tWivNQ==}
+    peerDependencies:
+      react: '>=16.13.1'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      hamt_plus: 1.0.2
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /regenerator-runtime/0.13.11:
