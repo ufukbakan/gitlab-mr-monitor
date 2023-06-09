@@ -81,3 +81,23 @@ body {
     opacity: 0;
   }
 }
+
+.p-inputswitch-slider::after {
+  content: "\e9c7";
+  font-family: 'primeicons';
+  color: #eee;
+  position: absolute;
+  top: 50%;
+  transform: translate(65%, -50%);
+  font-size: 9pt;
+  transition: all .4s, color 0s;
+}
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider::after {
+  content: "\e9c8";
+  font-family: 'primeicons';
+  font-size: 12pt;
+  color: #5472d4;
+  transform: translate(165%, -50%);
+  opacity: 1;
+}
