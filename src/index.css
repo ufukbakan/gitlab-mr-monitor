@@ -101,3 +101,7 @@ body {
   transform: translate(165%, -50%);
   opacity: 1;
 }
+
+.lighten:hover{
+  filter: brightness(1.2);
+}
