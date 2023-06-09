@@ -16,19 +16,17 @@ export function fetchMergeRequests(states: string[], target_branches: string[], 
             promises.push(fetchMergeRequest(comb.state, comb.branch, token));
         });
 
-        let results: MergeRequest[] = [];
+        const results: MergeRequest[] = [];
         Promise.allSettled(promises).then(settledResults => {
             settledResults.forEach(result => {
                 if (result.status == "fulfilled") {
-                    if (Array.isArray(result.value)) {
-                        results.push(...(result.value));
-                    }
+                    results.push(...result.value);
                 } else {
                     console.error(result.reason);
                 }
             })
+            resolve(results);
         });
-        resolve(results);
     });
 }
 
