@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "axios": "^1.4.0",
+    "color-scheme-hook": "^3.7.2",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
     "primereact": "^9.5.0",
