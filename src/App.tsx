@@ -3,6 +3,8 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import TopRightNav from "./ui/components/TopRightNav";
 import MergeRequestTable from "./ui/components/MergeRequestTable";
+import TopLeftNav from "./ui/components/TopLeftNav";
+import HowTo from "./ui/components/HowTo";
 
 function App() {
 
@@ -10,8 +12,7 @@ function App() {
     <>
       <div className="flex w-full p-4 justify-content-between">
         <div className="top-left">
-          <img src="/gitlab.svg" id="logo" />
-          <h1 className="text-700">Merge Requests</h1>
+          <TopLeftNav />
         </div>
 
         <div className="top-right">
@@ -21,6 +22,7 @@ function App() {
       </div>
 
       <MergeRequestTable />
+      <HowTo />
     </>
   )
 }
