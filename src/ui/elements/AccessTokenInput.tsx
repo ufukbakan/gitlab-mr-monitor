@@ -10,5 +10,5 @@ export default function () {
         localStorage.setItem("access-token", token);
     }, [token]);
     
-    return <InputText placeholder="Access Token" value={token} onChange={e => setToken(e.target.value)} />
+    return <InputText style={{width: "10rem"}} placeholder="Access Token" value={token} onChange={e => setToken(e.target.value)} />
 }
