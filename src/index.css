@@ -3,3 +3,81 @@ body {
   padding: 0;
   font-family: var(--font-family);
 }
+
+#logo {
+  width: 3rem;
+  height: 3rem;
+}
+
+.top-left {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  align-items: center;
+  font-size: 8pt;
+}
+
+.circle {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--circle-color);
+  position: relative;
+}
+
+.circle::before,
+.circle::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  box-sizing: content-box;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--circle-color);
+  border-radius: 50%;
+  animation: var(--circle-animation);
+}
+
+.circle::after {
+  animation-delay: 1s;
+}
+
+.circle.closed {
+  --circle-color: red;
+  --circle-animation: circle-ripple 3s infinite;
+}
+
+.circle.opened {
+  --circle-color: rgb(107, 255, 107);
+  --circle-animation: circle-ripple 3s infinite;
+}
+
+.circle.draft {
+  --circle-color: orange;
+  --circle-animation: none;
+}
+
+.circle.merged {
+  --circle-color: rgb(30, 154, 255);
+  --circle-animation: none;
+}
+
+.circle.locked {
+  --circle-color: #777;
+  --circle-animation: none;
+}
+
+@keyframes circle-ripple {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translate(-50%, -50%) scale(2.25);
+    opacity: 0;
+  }
+}
