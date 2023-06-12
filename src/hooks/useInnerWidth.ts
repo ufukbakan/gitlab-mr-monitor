@@ -9,7 +9,7 @@ export default function(){
 
     useEffect(() => {
         globalThis.window.addEventListener("resize", updateInnerWidth);
-        return () => globalThis.removeEventListener("resize", updateInnerWidth);
+        return () => globalThis.window.removeEventListener("resize", updateInnerWidth);
     }, [])
 
     return innerWidth;
