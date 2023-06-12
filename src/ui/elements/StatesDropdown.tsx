@@ -2,6 +2,7 @@ import { MultiSelect } from "primereact/multiselect";
 import { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { mergeRequestStatesAtom } from "../../service/Commons";
+import ClassReceivingProps from "./commons/ClassReceivingProps";
 
 export type MergeRequestState = "opened" | "closed" | "merged" | "locked";
 type StateOption = {
@@ -16,7 +17,7 @@ const stateOptions: StateOption[] = [
     { label: "Locked", value: "locked" }
 ];
 
-export default function () {
+export default function (props: ClassReceivingProps) {
     const [selectedStateOptions, setSelectedStateOptions] = useState([stateOptions[0].value]);
     const setSelectedState = useSetRecoilState(mergeRequestStatesAtom);
 
@@ -24,5 +25,5 @@ export default function () {
         setSelectedState(selectedStateOptions);
     }, [selectedStateOptions])
 
-    return <MultiSelect options={stateOptions} value={selectedStateOptions} onChange={e => setSelectedStateOptions(e.value)} />
+    return <MultiSelect className={props.className} options={stateOptions} value={selectedStateOptions} onChange={e => setSelectedStateOptions(e.value)} />
 }

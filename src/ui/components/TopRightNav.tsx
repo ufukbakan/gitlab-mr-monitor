@@ -23,10 +23,10 @@ export default function () {
         return new Promise((resolve) => Promise.allSettled(promises).then((results) => {
             const projectsResult = results[0];
             const mergeRequestResult = results[1];
-            if(projectsResult.status == "fulfilled"){
+            if (projectsResult.status == "fulfilled") {
                 setProjects(projectsResult.value as Project[]);
             }
-            if(mergeRequestResult.status == "fulfilled"){
+            if (mergeRequestResult.status == "fulfilled") {
                 setMergeRequests(mergeRequestResult.value as MergeRequest[]);
             }
             resolve(null);
@@ -48,12 +48,16 @@ export default function () {
     }, [token, branches, states])
 
     return (
-        <div className="flex gap-2 align-items-center">
-            <ThemeSwitcher />
-            <Button icon={isFetching ? "pi pi-spin pi-spinner" : "pi pi-replay"} disabled={isFetching} onClick={loadData} />
-            <AccessTokenInput />
-            <BranchesDropdown />
-            <StatesDropdown />
+        <div className="flex flex-column gap-2">
+            <div className="top-right-1 flex justify-content-between gap-2 align-items-center">
+                <AccessTokenInput className="col" />
+                <ThemeSwitcher className="col-fixed" />
+            </div>
+            <div className="top-right-2 flex justify-content-between gap-2 align-items-center">
+                <Button icon={isFetching ? "pi pi-spin pi-spinner" : "pi pi-replay"} disabled={isFetching} onClick={loadData} />
+                <BranchesDropdown className="prime-input" />
+                <StatesDropdown className="prime-input" />
+            </div>
         </div>
     )
 }

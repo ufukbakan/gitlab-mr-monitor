@@ -1,8 +1,9 @@
 import { useLightMode } from "color-scheme-hook";
 import { InputSwitch } from "primereact/inputswitch";
 import { useEffect } from "react";
+import ClassReceivingProps from "./commons/ClassReceivingProps";
 
-export default function () {
+export default function (props: ClassReceivingProps) {
     const [isLight, toggle, reset] = useLightMode();
     useEffect(() => {
         const theme = isLight ? "viva-light" : "viva-dark";
@@ -13,5 +14,5 @@ export default function () {
         }
     }, [isLight]);
 
-    return <InputSwitch checked={isLight} onChange={toggle} />
+    return <InputSwitch checked={isLight} onChange={toggle} className={props.className} />
 }

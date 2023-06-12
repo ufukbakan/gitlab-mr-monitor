@@ -2,6 +2,7 @@ import { MultiSelect } from "primereact/multiselect";
 import { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { branchesAtom } from "../../service/Commons";
+import ClassReceivingProps from "./commons/ClassReceivingProps";
 
 // You may consider editing branch options regard to your organisation
 
@@ -12,7 +13,7 @@ const branchOptions = [
     { label: "Dev", value: "dev" },
 ]
 
-export default function () {
+export default function (props: ClassReceivingProps) {
     const [selectedBranches, setSelectedBranches] = useState([branchOptions[0].value]);
     const setBranchesAtom = useSetRecoilState(branchesAtom);
     
@@ -20,5 +21,5 @@ export default function () {
         setBranchesAtom(selectedBranches);
     }, [selectedBranches])
 
-    return <MultiSelect options={branchOptions} value={selectedBranches} onChange={e => setSelectedBranches(e.value)} />
+    return <MultiSelect className={props.className} options={branchOptions} value={selectedBranches} onChange={e => setSelectedBranches(e.value)} />
 }

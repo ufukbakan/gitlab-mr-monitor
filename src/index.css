@@ -102,6 +102,32 @@ body {
   opacity: 1;
 }
 
-.lighten:hover{
+.lighten:hover {
   filter: brightness(1.2);
+}
+
+.top-right-1 .prime-input {
+  width: 1fr;
+}
+
+.top-right-2 .prime-input {
+  width: 10rem;
+}
+
+@media screen and (max-width: 930px) {
+  .top-left h1 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 740px) {
+
+  .circle {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .top-right-2 .prime-input {
+    width: 25vw;
+  }
 }
