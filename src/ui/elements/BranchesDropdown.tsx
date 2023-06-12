@@ -20,5 +20,5 @@ export default function () {
         setBranchesAtom(selectedBranches);
     }, [selectedBranches])
 
-    return <MultiSelect style={{width: "10rem"}} options={branchOptions} value={selectedBranches} onChange={e => setSelectedBranches(e.value)} />
+    return <MultiSelect options={branchOptions} value={selectedBranches} onChange={e => setSelectedBranches(e.value)} />
 }

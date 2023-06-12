@@ -24,5 +24,5 @@ export default function () {
         setSelectedState(selectedStateOptions);
     }, [selectedStateOptions])
 
-    return <MultiSelect style={{width: "10rem"}} options={stateOptions} value={selectedStateOptions} onChange={e => setSelectedStateOptions(e.value)} />
+    return <MultiSelect options={stateOptions} value={selectedStateOptions} onChange={e => setSelectedStateOptions(e.value)} />
 }
