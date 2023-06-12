@@ -26,7 +26,7 @@ export default function (props: DialogProps) {
         return (
             <div className="flex flex-column gap-2">
                 <Button label="How to get access token?" onClick={() => setPage("access-token")} />
-                <Button label="How to install monitor on premise?" onClick={() => setPage("onpremise-installation")} />
+                <Button label="How to install on-premise?" onClick={() => setPage("onpremise-installation")} />
             </div>
         )
     }
