@@ -19,11 +19,13 @@ export default function () {
     const [message, setMessage] = useState<ReactNode>(defaultMessage);
     const { setRefreshToken } = useRefreshToken();
     const { setAccessToken } = useAccessToken();
+    let lastRefreshJob: number;
 
     function handleTokenResponse(resp: AxiosResponse<AuthResponse>) {
         setAccessToken(resp.data.access_token);
         setRefreshToken(resp.data.refresh_token);
-        setTimeout(() => refreshAccessToken(resp.data.refresh_token), resp.data.expires_in * 1000);
+        lastRefreshJob && clearTimeout(lastRefreshJob);
+        lastRefreshJob = setTimeout(() => refreshAccessToken(resp.data.refresh_token), resp.data.expires_in * 1000);
     }
 
     function handleTokenError(err: any) {
