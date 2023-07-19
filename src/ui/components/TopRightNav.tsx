@@ -1,7 +1,7 @@
 import { Button } from "primereact/button";
 import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { branchesAtom, mergeRequestStatesAtom, mergeRequestsAtom, projectsAtom, useAccessToken } from "../../service/Commons";
+import { branchesAtom, fetchMrErrorAtom, mergeRequestStatesAtom, mergeRequestsAtom, projectsAtom, useAccessToken } from "../../service/Commons";
 import { fetchMergeRequests } from "../../service/MergeRequestService";
 import { fetchProjects } from "../../service/ProjectService";
 import { MergeRequest, Project } from "../../service/types";
@@ -18,9 +18,10 @@ export default function () {
     const { accessToken } = useAccessToken();
     const branches = useRecoilValue(branchesAtom);
     const states = useRecoilValue(mergeRequestStatesAtom);
+    const setErrors = useSetRecoilState(fetchMrErrorAtom);
 
     async function fetchData() {
-        const promises = [fetchProjects(accessToken), fetchMergeRequests(states, branches, accessToken)];
+        const promises = [fetchProjects(accessToken), fetchMergeRequests(states, branches, accessToken, setErrors)];
         return new Promise((resolve) => Promise.allSettled(promises).then((results) => {
             const projectsResult = results[0];
             const mergeRequestResult = results[1];
