@@ -114,6 +114,16 @@ body {
   width: 10rem;
 }
 
+.w-fulls {
+  width: 100%;
+  min-width: 100svw;
+}
+
+.h-fulls {
+  height: 100%;
+  min-height: 100svh;
+}
+
 @media screen and (max-width: 930px) {
   .top-left h1 {
     display: none;
@@ -128,6 +138,26 @@ body {
   }
 
   .top-right-2 .prime-input {
-    width: 25vw;
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .top-right-1 button {
+    height: 2.6rem;
+  }
+
+  .top-right-1 button span {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .top-left {
+    display: none;
+  }
+
+  .top-right-2.gap-2 {
+    gap: 0.2rem !important;
   }
 }
