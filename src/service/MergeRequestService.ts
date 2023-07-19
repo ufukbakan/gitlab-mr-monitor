@@ -2,7 +2,7 @@ import axios from "axios";
 import { baseUrl } from "./Commons";
 import { MergeRequest } from "./types";
 
-export function fetchMergeRequests(states: string[], target_branches: string[], token: string): Promise<MergeRequest[]> {
+export function fetchMergeRequests(states: string[], target_branches: string[], token: string, setErrors: ((eList: Error[]) => void)): Promise<MergeRequest[]> {
     return new Promise((resolve, reject) => {
         const state_branch_combinations: { state: string, branch: string }[] = [];
         states.forEach(state => {
@@ -17,14 +17,20 @@ export function fetchMergeRequests(states: string[], target_branches: string[], 
         });
 
         const results: MergeRequest[] = [];
+        const errors: Error[] = [];
+        let index = 0;
         Promise.allSettled(promises).then(settledResults => {
             settledResults.forEach(result => {
                 if (result.status == "fulfilled") {
                     results.push(...result.value);
                 } else {
                     console.error(result.reason);
+                    const errorCombination = state_branch_combinations[index];
+                    errors.push(new Error(`Error while trying to fetch ${errorCombination.state} merge requests for ${errorCombination.branch}\n${result.reason}`));
                 }
+                index++;
             })
+            setErrors(errors);
             resolve(results);
         });
     });
