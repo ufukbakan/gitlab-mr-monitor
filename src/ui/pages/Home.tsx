@@ -1,3 +1,4 @@
+import FetchErrors from "../components/FetchErrors";
 import HowTo from "../components/HowTo";
 import MergeRequestTable from "../components/MergeRequestTable";
 import TopLeftNav from "../components/TopLeftNav";
@@ -18,6 +19,7 @@ export default function () {
             </div>
 
             <MergeRequestTable />
+            <FetchErrors />
             <HowTo />
         </>
     )
