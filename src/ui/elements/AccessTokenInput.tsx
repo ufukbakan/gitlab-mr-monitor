@@ -1,15 +1,9 @@
-import { InputText } from "primereact/inputtext"
-import { useEffect } from "react";
-import { useRecoilState } from "recoil"
-import { accessTokenAtom } from "../../service/Commons"
+import { InputText } from "primereact/inputtext";
+import { useAccessToken } from "../../service/Commons";
 import ClassReceivingProps from "./commons/ClassReceivingProps";
 
 export default function (props: ClassReceivingProps) {
-    const [token, setToken] = useRecoilState(accessTokenAtom);
+    const { accessToken, setAccessToken } = useAccessToken();
     
-    useEffect(() => {
-        localStorage.setItem("access-token", token);
-    }, [token]);
-    
-    return <InputText type="password" className={props.className} placeholder="Access Token" value={token} onChange={e => setToken(e.target.value)} />
+    return <InputText type="password" className={props.className} placeholder="Access Token" value={accessToken} onChange={e => setAccessToken(e.target.value)} />
 }
