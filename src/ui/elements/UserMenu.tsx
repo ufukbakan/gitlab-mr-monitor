@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from "react";
 import { Menu } from "primereact/menu";
 import { MenuItem } from "primereact/menuitem";
+import { useRef } from "react";
+import { useAccessToken, useRefreshToken } from "../../service/Commons";
 import { User } from "../../service/UserService";
 
 type UserMenuProps = {
@@ -8,25 +9,28 @@ type UserMenuProps = {
 }
 
 export default function ({ user }: UserMenuProps) {
-    const [showMenu, setShowMenu] = useState(false);
     const menuItems: MenuItem[] = [
-        { label: "Logout", command: () => { alert("hello world") } }
+        { label: "Logout", command: logout }
     ];
     const menuRef = useRef<Menu>(null);
+    const { setRefreshToken } = useRefreshToken();
+    const { setAccessToken } = useAccessToken();
+    
+    function logout(){
+        setAccessToken("");
+        setRefreshToken("");
+        globalThis.location.reload();
+    }
 
     return (
         <>
-            <div className="flex flex-row p-2 gap-2 cursor-pointer align-items-center surface-200" style={{
+            <div className="flex flex-row select-none p-2 gap-2 cursor-pointer align-items-center surface-50" style={{
                 borderRadius: "20px"
-            }} onClick={e => {
-                const newState = !showMenu;
-                setShowMenu(newState);
-                newState == true ? menuRef.current?.show(e) : menuRef.current?.hide(e);
-            }}>
+            }} onClick={e => menuRef.current?.toggle(e)}>
                 <span className="fullname">{user.name}</span>
                 <img style={{ height: "2rem", borderRadius: "50%" }} src={user.avatar_url} />
             </div>
-            <Menu style={{ transform: "translateY(1rem)" }} ref={menuRef} model={menuItems} popup />
+            <Menu style={{ transform: "translateY(.2rem)" }} ref={menuRef} model={menuItems} popup />
         </>
     )
 
