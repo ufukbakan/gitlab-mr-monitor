@@ -124,6 +124,10 @@ body {
   min-height: 100svh;
 }
 
+.white-space-pre{
+  white-space: pre;
+}
+
 @media screen and (max-width: 930px) {
   .top-left h1 {
     display: none;
