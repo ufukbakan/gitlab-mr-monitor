@@ -1,25 +1,26 @@
+import { Button } from "primereact/button";
 import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { accessTokenAtom, branchesAtom, mergeRequestsAtom, mergeRequestStatesAtom, projectsAtom } from "../../service/Commons";
+import { branchesAtom, mergeRequestStatesAtom, mergeRequestsAtom, projectsAtom, useAccessToken } from "../../service/Commons";
 import { fetchMergeRequests } from "../../service/MergeRequestService";
 import { fetchProjects } from "../../service/ProjectService";
+import { MergeRequest, Project } from "../../service/types";
 import AccessTokenInput from "../elements/AccessTokenInput";
 import BranchesDropdown from "../elements/BranchesDropdown";
+import SignInWithGitLab from "../elements/SignInWithGitLab";
 import StatesDropdown from "../elements/StatesDropdown";
-import { Button } from "primereact/button"
-import { MergeRequest, Project } from "../../service/types";
 import ThemeSwitcher from "../elements/ThemeSwitcher";
 
 export default function () {
     const [isFetching, setIsFetching] = useState(false);
     const setMergeRequests = useSetRecoilState(mergeRequestsAtom);
     const setProjects = useSetRecoilState(projectsAtom);
-    const token = useRecoilValue(accessTokenAtom);
+    const { accessToken } = useAccessToken();
     const branches = useRecoilValue(branchesAtom);
     const states = useRecoilValue(mergeRequestStatesAtom);
 
     async function fetchData() {
-        const promises = [fetchProjects(token), fetchMergeRequests(states, branches, token)];
+        const promises = [fetchProjects(accessToken), fetchMergeRequests(states, branches, accessToken)];
         return new Promise((resolve) => Promise.allSettled(promises).then((results) => {
             const projectsResult = results[0];
             const mergeRequestResult = results[1];
@@ -45,11 +46,12 @@ export default function () {
         return () => {
             clearInterval(interval);
         }
-    }, [token, branches, states])
+    }, [accessToken, branches, states])
 
     return (
         <div className="flex flex-column gap-2">
             <div className="top-right-1 flex justify-content-between gap-2 align-items-center">
+                <SignInWithGitLab />
                 <AccessTokenInput className="col" />
                 <ThemeSwitcher className="col-fixed" />
             </div>
