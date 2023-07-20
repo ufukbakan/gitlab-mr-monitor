@@ -1,3 +1,4 @@
+import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
 import { MenuItem } from "primereact/menuitem";
 import { useRef } from "react";
@@ -24,12 +25,12 @@ export default function ({ user }: UserMenuProps) {
 
     return (
         <>
-            <div className="flex flex-row select-none p-2 gap-2 cursor-pointer align-items-center surface-50" style={{
+            <Button className="panel-button flex flex-row select-none p-2 gap-2 cursor-pointer align-items-center surface-50" style={{
                 borderRadius: "20px"
             }} onClick={e => menuRef.current?.toggle(e)}>
                 <span className="fullname">{user.name}</span>
                 <img style={{ height: "2rem", borderRadius: "50%" }} src={user.avatar_url} />
-            </div>
+            </Button>
             <Menu style={{ transform: "translateY(.2rem)" }} ref={menuRef} model={menuItems} popup />
         </>
     )
