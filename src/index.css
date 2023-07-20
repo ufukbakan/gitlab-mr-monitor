@@ -124,8 +124,21 @@ body {
   min-height: 100svh;
 }
 
-.white-space-pre{
+.white-space-pre {
   white-space: pre;
+}
+
+.panel-button {
+  background-color: var(--surface-50) !important;
+  color: var(--surface-600) !important;
+  outline-color: var(--surface-50) !important;
+  border-color: var(--surface-50) !important;
+}
+
+.panel-button:hover {
+  background-color: var(--surface-100) !important;
+  outline-color: var(--surface-200) !important;
+  border-color: var(--surface-200) !important;
 }
 
 @media screen and (max-width: 930px) {
