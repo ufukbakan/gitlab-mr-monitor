@@ -1,10 +1,12 @@
 import axios, { AxiosResponse } from "axios";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { ReactNode, useEffect, useState } from "react";
-import { authProvider, client_id, client_secret, redirect_uri, useAccessToken, useRefreshToken } from "../../service/Commons";
+import { authProvider, client_id, client_secret, redirect_uri, refreshJobAtom, useAccessToken, useRefreshToken } from "../../service/Commons";
 import ThemeSwitcher from "../elements/ThemeSwitcher";
+import { useRecoilState } from "recoil";
+import { requestAccesTokenRefresh } from "../../service/AuthService";
 
-interface AuthResponse {
+export interface AuthResponse {
     access_token: string;
     token_type: string;
     expires_in: number;
@@ -19,13 +21,13 @@ export default function () {
     const [message, setMessage] = useState<ReactNode>(defaultMessage);
     const { setRefreshToken } = useRefreshToken();
     const { setAccessToken } = useAccessToken();
-    let lastRefreshJob: number;
+    const [lastRefreshJob, setLastRefreshJob] = useRecoilState(refreshJobAtom);
 
     function handleTokenResponse(resp: AxiosResponse<AuthResponse>) {
         setAccessToken(resp.data.access_token);
         setRefreshToken(resp.data.refresh_token);
         lastRefreshJob && clearTimeout(lastRefreshJob);
-        lastRefreshJob = setTimeout(() => refreshAccessToken(resp.data.refresh_token), resp.data.expires_in * 1000);
+        setLastRefreshJob(setTimeout(() => refreshAccessToken(resp.data.refresh_token), resp.data.expires_in * 1000));
     }
 
     function handleTokenError(err: any) {
@@ -35,14 +37,7 @@ export default function () {
     }
 
     function refreshAccessToken(refresh_token: string) {
-        const body = {
-            client_id,
-            refresh_token,
-            grant_type: "refresh_token",
-            redirect_uri
-        }
-        const postUrl = `${authProvider}/oauth/token`;
-        axios.post<AuthResponse>(postUrl, body)
+        requestAccesTokenRefresh(refresh_token)
             .then(handleTokenResponse)
             .catch(handleTokenError);
     }
