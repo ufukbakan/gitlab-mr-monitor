@@ -10,7 +10,7 @@ export default function () {
 
     useEffect(() => {
         fetchSelfInfo(accessToken).then(setUserInfo);
-    }, [])
+    }, [accessToken])
 
     function render() {
         if (userInfo) {
