@@ -2,8 +2,9 @@ import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
 import { MenuItem } from "primereact/menuitem";
 import { useRef } from "react";
-import { useAccessToken, useRefreshToken } from "../../service/Commons";
+import { refreshJobAtom, useAccessToken, useRefreshToken } from "../../service/Commons";
 import { User } from "../../service/UserService";
+import { useRecoilValue } from "recoil";
 
 type UserMenuProps = {
     user: User
@@ -16,11 +17,12 @@ export default function ({ user }: UserMenuProps) {
     const menuRef = useRef<Menu>(null);
     const { setRefreshToken } = useRefreshToken();
     const { setAccessToken } = useAccessToken();
-    
-    function logout(){
+    const lastRefreshJob = useRecoilValue(refreshJobAtom);
+
+    function logout() {
         setAccessToken("");
         setRefreshToken("");
-        globalThis.location.reload();
+        lastRefreshJob && clearTimeout(lastRefreshJob);
     }
 
     return (

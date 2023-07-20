@@ -11,6 +11,11 @@ export const client_id = "bc7072f9dd9baeea3490d3d1b82c3dde271e443d3bdbebe89efe0d
 export const client_secret = "46734d0c3f55dd12925e57f22a07efad38ac2c534885cdfee3e03ebbb4200a93";
 export const redirect_uri = env.toLowerCase().includes("dev") ? "http://localhost:5173/oauth" : "https://gitlab-mr-monitor.vercel.app/oauth";
 
+export const refreshJobAtom = atom<number>({
+    key: "refreshJob",
+    default: undefined
+});
+
 export const fetchMrErrorAtom = atom<Error[]>({
     key: "fetchMrError",
     default: []
