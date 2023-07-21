@@ -45,8 +45,8 @@ export default function (props: ClassReceivingProps) {
     }, [branchOptions])
 
     return (
-        <>
-            <div className="flex flex-row gap-0 align-items-strech">
+        <div id="branches-dropdown">
+            <div className="flex flex-row justify-content-end gap-0 align-items-strech">
                 <MultiSelect
                     style={{
                         borderTopRightRadius: 0,
@@ -65,6 +65,6 @@ export default function (props: ClassReceivingProps) {
                 }} className="border-none" size="small" icon="pi pi-pencil" onClick={() => setShowEditDialog(true)} />
             </div>
             <EditBranchesDialog onHide={() => { setShowEditDialog(false) }} visible={showEditDialog} />
-        </>
+        </div>
     )
 }

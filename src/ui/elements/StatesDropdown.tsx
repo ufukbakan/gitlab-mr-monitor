@@ -25,5 +25,5 @@ export default function (props: ClassReceivingProps) {
         setSelectedState(selectedStateOptions);
     }, [selectedStateOptions])
 
-    return <MultiSelect className={props.className} options={stateOptions} value={selectedStateOptions} onChange={e => setSelectedStateOptions(e.value)} />
+    return <MultiSelect id="states-dropdown" className={props.className} options={stateOptions} value={selectedStateOptions} onChange={e => setSelectedStateOptions(e.value)} />
 }
