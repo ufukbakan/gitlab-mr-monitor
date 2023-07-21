@@ -1,6 +1,7 @@
 import { Button } from "primereact/button";
 import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
+import useInnerWidth from "../../hooks/useInnerWidth";
 import { branchesAtom, fetchMrErrorAtom, mergeRequestStatesAtom, mergeRequestsAtom, projectsAtom, useAccessToken } from "../../service/Commons";
 import { fetchMergeRequests } from "../../service/MergeRequestService";
 import { fetchProjects } from "../../service/ProjectService";
@@ -20,7 +21,8 @@ export default function () {
     const branches = useRecoilValue(branchesAtom);
     const states = useRecoilValue(mergeRequestStatesAtom);
     const setErrors = useSetRecoilState(fetchMrErrorAtom);
-    const panel = accessToken ? <UserPanel /> : <SignInWithGitLab />
+    const panel = accessToken ? <UserPanel /> : <SignInWithGitLab />;
+    const innerWidth = useInnerWidth();
 
     async function fetchData() {
         const promises = [fetchProjects(accessToken), fetchMergeRequests(states, branches, accessToken, setErrors)];
@@ -53,13 +55,13 @@ export default function () {
 
     return (
         <div className="flex flex-column gap-2">
-            <div className="top-right-1 flex justify-content-between gap-2 align-items-center">
+            <div className="top-right-1 flex flex-row flex-wrap justify-content-end gap-2 align-items-center">
                 <ThemeSwitcher className="col-fixed" />
-                <AccessTokenInput className="col" />
+                {innerWidth > 520 && <AccessTokenInput className="col" />}
                 {panel}
             </div>
-            <div className="top-right-2 flex justify-content-between gap-2 align-items-center">
-                <Button icon={isFetching ? "pi pi-spin pi-spinner" : "pi pi-replay"} disabled={isFetching} onClick={loadData} />
+            <div className="top-right-2 flex flex-row flex-wrap justify-content-end gap-2 align-items-center">
+                <Button id="refresh-button" icon={isFetching ? "pi pi-spin pi-spinner" : "pi pi-replay"} disabled={isFetching} onClick={loadData} />
                 <BranchesDropdown className="prime-input" />
                 <StatesDropdown className="prime-input" />
             </div>
