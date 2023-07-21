@@ -30,7 +30,7 @@ export default function () {
             />}
             <Column field="title" header="Title" sortable filter />
             {innerWidth > 930 && <Column field="author.name" header="Author" sortable filter />}
-            <Column
+            {innerWidth > 420 && <Column
                 field="target_brach"
                 header="Branch"
                 sortable
@@ -39,7 +39,7 @@ export default function () {
                         <div>{mr.source_branch}</div> <i className="pi pi-arrow-right" /><div>{mr.target_branch}</div>
                     </div>
                 )}
-            />
+            />}
             <Column
                 field="url"
                 header="Link"
