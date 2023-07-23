@@ -19,7 +19,7 @@ export default function () {
         setAccessToken(resp.data.access_token);
         setRefreshToken(resp.data.refresh_token);
         lastRefreshJob && clearTimeout(lastRefreshJob);
-        setLastRefreshJob(setTimeout(() => {
+        setLastRefreshJob(window.setTimeout(() => {
             requestAccesTokenRefresh(resp.data.refresh_token)
                 .then(handleTokenResponse)
                 .catch(logout)

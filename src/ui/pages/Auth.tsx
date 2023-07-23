@@ -27,7 +27,7 @@ export default function () {
         setAccessToken(resp.data.access_token);
         setRefreshToken(resp.data.refresh_token);
         lastRefreshJob && clearTimeout(lastRefreshJob);
-        setLastRefreshJob(setTimeout(() => refreshAccessToken(resp.data.refresh_token), resp.data.expires_in * 1000));
+        setLastRefreshJob(window.setTimeout(() => refreshAccessToken(resp.data.refresh_token), resp.data.expires_in * 1000));
     }
 
     function handleTokenError(err: any) {
