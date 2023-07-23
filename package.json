@@ -10,19 +10,22 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build:old": "tsc && vite build",
+    "build": "tsc && vite build && node ssg.cjs",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
     "axios": "^1.4.0",
     "color-scheme-hook": "^3.7.2",
+    "dotenv": "^16.3.1",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
     "primereact": "^9.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "recoil": "^0.7.7",
+    "site-prerender": "^1.0.2",
     "wouter": "^2.11.0"
   },
   "devDependencies": {
