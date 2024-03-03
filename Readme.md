@@ -9,7 +9,12 @@ You need to get an access token to use gitlab api.
 
 ___
 ### How to get an access token
-            
+
+#### Method 1
+- Click on the "Sign In" button that located on the top right corner
+- Follow instructions, you will be redirected back to home page
+
+#### Method 2
 - Sign in to your GitLab account
 - Click on your user <u>profile picture</u>
 - Go to <u>Preferences</u>
