@@ -1,6 +1,6 @@
 # Gitlab Merge Request Monitor
 
-![Gitlab Merge Request Monitor Screen Shot](ss.webp)
+![Gitlab Merge Request Monitor Screen Shot](ss.png)
 
 ## What is it
 This web application provides a GUI for team leads, system administrators and devops crew to view all merge requests at a glance.
