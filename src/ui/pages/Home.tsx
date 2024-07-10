@@ -10,7 +10,7 @@ import { AuthResponse } from "./Auth";
 import { pingGitlab, requestAccesTokenRefresh } from "../../service/AuthService";
 import { useEffect } from "react";
 
-export default function () {
+export default function HomePage() {
 
     const { accessToken, setAccessToken } = useAccessToken();
     const { refreshToken, setRefreshToken } = useRefreshToken();

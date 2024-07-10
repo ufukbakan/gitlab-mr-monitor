@@ -15,7 +15,7 @@ export interface AuthResponse {
     created_at: number;
 }
 
-export default function () {
+export default function AuthPage() {
     const searchParams = new URLSearchParams(globalThis.location.search);
     const defaultMessage = "You will be redirected";
     const [message, setMessage] = useState<ReactNode>(defaultMessage);
