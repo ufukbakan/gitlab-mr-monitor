@@ -50,6 +50,21 @@ export const projectsAtom = atom<Project[]>({
   default: [],
 });
 
+export const apiUrlAtom = atom<string>({
+  key: "apiUrl",
+  default: import.meta.env.VITE_API_URL
+});
+
+export const authProviderAtom = atom<string>({
+  key: "authProvider",
+  default: import.meta.env.VITE_AUTH_PROVIDER
+})
+
+export const mrScopeAtom = atom<string>({
+  key: "mrScope",
+  default: import.meta.env.VITE_MR_SCOPE
+})
+
 export const useAccessToken = () => {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenAtom);
   useEffect(() => {
