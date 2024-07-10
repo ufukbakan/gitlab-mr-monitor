@@ -38,7 +38,6 @@ export function fetchMergeRequests(states: string[], target_branches: string[], 
 
 function fetchMergeRequest(state: string, targetBranch: string, token: string): Promise<MergeRequest[]> {
     return new Promise((resolve, reject) => {
-        // You may consider adding ?scope=all to the end of url if you want to monitor all projects
         axios.get<MergeRequest[]>(
             `${baseUrl}/merge_requests?state=${state}&target_branch=${targetBranch}&scope=${import.meta.env.VITE_MR_SCOPE}`,
             {
