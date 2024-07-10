@@ -5,8 +5,7 @@ interface ImportMetaEnv {
     readonly VITE_API_URL: string;
     readonly VITE_AUTH_PROVIDER: string;
     readonly VITE_MR_SCOPE: string;
-
-    // more env variables...
+    readonly VITE_DEFAULT_BRANCHES: string;
 }
 
 interface ImportMeta {
