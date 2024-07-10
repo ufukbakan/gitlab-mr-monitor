@@ -3,7 +3,7 @@ import { baseUrl } from "./Commons";
 import { MergeRequest } from "./types";
 
 export function fetchMergeRequests(states: string[], target_branches: string[], token: string, setErrors: ((eList: Error[]) => void)): Promise<MergeRequest[]> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         const state_branch_combinations: { state: string, branch: string }[] = [];
         states.forEach(state => {
             target_branches.forEach(branch => {
@@ -38,9 +38,8 @@ export function fetchMergeRequests(states: string[], target_branches: string[], 
 
 function fetchMergeRequest(state: string, targetBranch: string, token: string): Promise<MergeRequest[]> {
     return new Promise((resolve, reject) => {
-        // You may consider adding ?scope=all to the end of url if you want to monitor all projects
         axios.get<MergeRequest[]>(
-            `${baseUrl}/merge_requests?state=${state}&target_branch=${targetBranch}`,
+            `${baseUrl}/merge_requests?state=${state}&target_branch=${targetBranch}&scope=${import.meta.env.VITE_MR_SCOPE}`,
             {
                 headers: {
                     "Authorization": `Bearer ${token}`

@@ -7,14 +7,7 @@ import ClassReceivingProps from "./commons/ClassReceivingProps";
 import EditBranchesDialog from "./EditBranchesDialog";
 import { Button } from "primereact/button";
 
-// You may consider editing default branch options regard to your organisation
-
-const defaultBranchOptions: SelectItem[] = [
-    { label: "Main", value: "main" },
-    { label: "Master", value: "master" },
-    { label: "Test", value: "test" },
-    { label: "Dev", value: "dev" },
-]
+const defaultBranchOptions: SelectItem[] = JSON.parse(import.meta.env.VITE_DEFAULT_BRANCHES)
 
 function getStoredBranchOptions() {
     const storedJson = localStorage.getItem("branch-options");
@@ -30,7 +23,7 @@ export const branchOptionsAtom = atom<SelectItem[]>({
     default: getStoredBranchOptions() || defaultBranchOptions
 });
 
-export default function (props: ClassReceivingProps) {
+export default function BranchesDropdown(props: ClassReceivingProps) {
     const branchOptions = useRecoilValue(branchOptionsAtom);
     const [selectedBranches, setSelectedBranches] = useState([branchOptions[0].value]);
     const setBranchesAtom = useSetRecoilState(branchesAtom);
