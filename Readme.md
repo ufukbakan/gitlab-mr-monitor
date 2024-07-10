@@ -31,7 +31,7 @@ ___
 
 
     If you want to do so open project via any text editor.
-    Search for text <u>'// You may consider'</u> it will help you to find api configs.
+    Look for the <u>.env</u> file, it will help you to find api configs.
 
 - Install dependencies via your package manager. (e.g. npm install)
 - You can then run 'dev' script or build and serve it as a standard React project.
