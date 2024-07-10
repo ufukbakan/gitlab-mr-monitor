@@ -3,7 +3,7 @@ import { baseUrl } from "./Commons";
 import { MergeRequest } from "./types";
 
 export function fetchMergeRequests(states: string[], target_branches: string[], token: string, setErrors: ((eList: Error[]) => void)): Promise<MergeRequest[]> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         const state_branch_combinations: { state: string, branch: string }[] = [];
         states.forEach(state => {
             target_branches.forEach(branch => {
