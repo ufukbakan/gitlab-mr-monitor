@@ -18,6 +18,7 @@
   "dependencies": {
     "axios": "^1.4.0",
     "color-scheme-hook": "^3.7.2",
+    "debounce": "^2.1.0",
     "dotenv": "^16.3.1",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
