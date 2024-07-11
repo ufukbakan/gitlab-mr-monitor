@@ -1,8 +1,10 @@
 import { Button } from "primereact/button";
 import { client_id, redirect_uri } from "../../service/Commons";
+import { useAuthProvider } from "../../hooks/settings";
 
-export default function () {
-    const oauthLink = `https://gitlab.com/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code&scope=read_api`;
+export default function SignInButton() {
+    const [authProvider] = useAuthProvider();
+    const oauthLink = `${authProvider}/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code&scope=read_api`;
     return (
         <a href={oauthLink}>
             <Button className="surface-700 border-none lighten">

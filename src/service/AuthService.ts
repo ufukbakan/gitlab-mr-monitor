@@ -1,8 +1,8 @@
 import axios from "axios";
 import { AuthResponse } from "../ui/pages/Auth";
-import { authProvider, baseUrl, client_id, redirect_uri } from "./Commons";
+import { client_id, redirect_uri } from "./Commons";
 
-export function requestAccesTokenRefresh(refresh_token: string) {
+export function requestAccesTokenRefresh({ refresh_token, authProvider } : {refresh_token: string, authProvider: string}) {
   const body = {
     client_id,
     refresh_token,
@@ -26,8 +26,8 @@ interface Kas {
   version: string;
 }
 
-export function pingGitlab(access_token: string) {
-  const getUrl = `${baseUrl}/version`;
+export function pingGitlab({ access_token, apiUrl }: {access_token: string, apiUrl: string}) {
+  const getUrl = `${apiUrl}/version`;
   return axios.get<VersionResponse>(getUrl, {
     headers: {
       Authorization: `Bearer ${access_token}`,

@@ -1,10 +1,6 @@
-import { Button } from "primereact/button";
-import { HasBackButton } from "./HowToDialog";
-
-export default function HelpComponent(props: HasBackButton) {
+export default function HelpComponent() {
     return (
         <>
-            <Button text icon="pi pi-arrow-left" className="absolute top-0 left-0 mt-4 ml-4" onClick={props.onBack} />
             <h2 className="mb-1 mt-0">How to install on-premise</h2>
             <ol>
                 <li>Clone project from <a href="https://github.com/ufukbakan/gitlab-mr-monitor" target="_blank">https://github.com/ufukbakan/gitlab-mr-monitor</a></li>

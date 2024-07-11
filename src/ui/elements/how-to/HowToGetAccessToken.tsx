@@ -1,10 +1,6 @@
-import { Button } from "primereact/button";
-import { HasBackButton } from "./HowToDialog";
-
-export default function (props: HasBackButton) {
+export default function HowToGetAccessTokenComponent() {
     return (
         <>
-            <Button text icon="pi pi-arrow-left" className="absolute top-0 left-0 mt-4 ml-4" onClick={props.onBack} />
             <h2 className="mb-1 mt-0">How to get an access token</h2>
             <ol>
                 <li>Sign in to your GitLab account</li>

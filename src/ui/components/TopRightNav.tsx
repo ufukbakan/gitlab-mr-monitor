@@ -12,8 +12,9 @@ import SignInWithGitLab from "../elements/SignInWithGitLab";
 import StatesDropdown from "../elements/StatesDropdown";
 import ThemeSwitcher from "../elements/ThemeSwitcher";
 import UserPanel from "../elements/UserPanel";
+import { useApiUrl, useMrScope } from "../../hooks/settings";
 
-export default function () {
+export default function TopRightNav() {
     const [isFetching, setIsFetching] = useState(false);
     const setMergeRequests = useSetRecoilState(mergeRequestsAtom);
     const setProjects = useSetRecoilState(projectsAtom);
@@ -23,9 +24,12 @@ export default function () {
     const setErrors = useSetRecoilState(fetchMrErrorAtom);
     const panel = accessToken ? <UserPanel /> : <SignInWithGitLab />;
     const innerWidth = useInnerWidth();
+    const [apiUrl] = useApiUrl();
+    const [mrScope] = useMrScope();
+    console.log("current access token is ", accessToken)
 
     async function fetchData() {
-        const promises = [fetchProjects(accessToken), fetchMergeRequests(states, branches, accessToken, setErrors)];
+        const promises = [fetchProjects({ apiUrl, token: accessToken }), fetchMergeRequests({ apiUrl, states, scope: mrScope, targetBranches: branches, token: accessToken, setErrors })];
         return new Promise((resolve) => Promise.allSettled(promises).then((results) => {
             const projectsResult = results[0];
             const mergeRequestResult = results[1];
@@ -51,7 +55,7 @@ export default function () {
         return () => {
             clearInterval(interval);
         }
-    }, [accessToken, branches, states])
+    }, [accessToken, branches, states, apiUrl, mrScope])
 
     return (
         <div className="flex flex-column gap-2">

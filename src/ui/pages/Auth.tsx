@@ -1,10 +1,11 @@
 import axios, { AxiosResponse } from "axios";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { ReactNode, useEffect, useState } from "react";
-import { authProvider, client_id, client_secret, redirect_uri, refreshJobAtom, useAccessToken, useRefreshToken } from "../../service/Commons";
+import { client_id, client_secret, redirect_uri, refreshJobAtom, useAccessToken, useRefreshToken } from "../../service/Commons";
 import ThemeSwitcher from "../elements/ThemeSwitcher";
 import { useRecoilState } from "recoil";
 import { requestAccesTokenRefresh } from "../../service/AuthService";
+import { useAuthProvider } from "../../hooks/settings";
 
 export interface AuthResponse {
     access_token: string;
@@ -22,6 +23,7 @@ export default function AuthPage() {
     const { setRefreshToken } = useRefreshToken();
     const { setAccessToken } = useAccessToken();
     const [lastRefreshJob, setLastRefreshJob] = useRecoilState(refreshJobAtom);
+    const [authProvider] = useAuthProvider();
 
     function handleTokenResponse(resp: AxiosResponse<AuthResponse>) {
         setAccessToken(resp.data.access_token);
@@ -37,7 +39,7 @@ export default function AuthPage() {
     }
 
     function refreshAccessToken(refresh_token: string) {
-        requestAccesTokenRefresh(refresh_token)
+        requestAccesTokenRefresh({ refresh_token, authProvider })
             .then(handleTokenResponse)
             .catch(handleTokenError);
     }
@@ -68,7 +70,7 @@ export default function AuthPage() {
 
     useEffect(() => {
         retrieveAccessToken();
-    }, []);
+    }, [authProvider]);
 
     return (
         <div className="h-fulls flex flex-column">

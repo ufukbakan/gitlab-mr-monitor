@@ -1,16 +1,18 @@
-import { useEffect, useState } from "react";
-import { useAccessToken } from "../../service/Commons"
-import { User, fetchSelfInfo } from "../../service/UserService";
 import { ProgressSpinner } from "primereact/progressspinner";
+import { useEffect, useState } from "react";
+import { useApiUrl } from "../../hooks/settings";
+import { useAccessToken } from "../../service/Commons";
+import { User, fetchSelfInfo } from "../../service/UserService";
 import UserMenu from "./UserMenu";
 
-export default function () {
+export default function UserPanel() {
     const { accessToken } = useAccessToken();
     const [userInfo, setUserInfo] = useState<User>();
+    const [apiUrl] = useApiUrl();
 
     useEffect(() => {
-        fetchSelfInfo(accessToken).then(setUserInfo);
-    }, [accessToken])
+        fetchSelfInfo({ accessToken, apiUrl }).then(setUserInfo);
+    }, [accessToken, apiUrl])
 
     function render() {
         if (userInfo) {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import HowToDialog from "../elements/how-to/HowToDialog";
 
-export default function () {
+export default function HowToComponent() {
     const [dialogVisible, setDialogVisible] = useState(false);
 
     return (
